@@ -1,0 +1,236 @@
+{
+  "Upload": {
+    "usuario": "idUsuario",
+    "localPath": "path local do arquivo no celular do usuario.",
+    "upload": false,
+    "updateCollection": {
+      "collection": "Usuario || UsuarioPerfil || Produto || PerguntaAplicada",
+      "document": "ID do documento nesta coleção",
+      "field": "foto (UsuarioID) || arquivo (UsuarioPerfilID) || uid.rascunhoIdUpload ou uid.editadoIdUpload (ProdutoID) || arquivo (PerguntaAplicadaID)"
+    },
+    "storagePath": "obtida do storage após upload",
+    "contentType": "definido pelo metadata text/plain | text/markdown | text/csv | text/html | image/png | image/jpeg | image/svg+xml  | application/pdf | application/msword | application/zip | video/x-msvideo | video/mpeg | audio/aac",
+    "url": "obtida do storage após upload",
+    "hash": "gerado pelo dart na leitura local do arquivo"
+  },
+  "Usuario": {
+    "comment": "O ID é o mesmo do userId do authentication(email/senha)",
+    "nome": "nome-valor",
+    "matricula": "",
+    "celular": "celular-valor",
+    "email": "email-valor",
+    "ativo": true,
+    "routes": [
+      "Rota/rotaID$url"
+    ],
+    "tipo": "aluno | professor | admin"
+  },
+  "Turma": {
+    "ativo": true,
+    "professor": {
+      "id": "",
+      "nome": ""
+    },
+    "aluno": {
+      "alunoID": {
+        "id": "",
+        "nome": ""
+      }
+    },
+    "componente": "",
+    "instituicao": "",
+    "nome": "",
+    "ultimaQuestaoAplicada": 0
+  },
+  "Problema": {
+    "ativo": true,
+    "professor": {
+      "id": "",
+      "nome": ""
+    },
+    "referencia": "",
+    "nome": "",
+    "pdf": {
+      "uploadID": "Upload/uploadID",
+      "url": "null || obtida do storage após upload",
+      "localPath": "path local do arquivo no celular do usuario."
+    }
+  },
+  "Simulacao": {
+    "problema": "Problema/problemaID",
+    "valorAleatorio": {
+      "variavel1": "valor",
+      "variavel2": "valor"
+    },
+    "letra": {
+      "a": {
+        "tipo": "resposta | texto | arquivo",
+        "valor": "valor"
+      },
+      "b": {
+        "tipo": "resposta | texto | arquivo",
+        "valor": "valor"
+      },
+      "c": {
+        "tipo": "resposta | texto | arquivo",
+        "uploadID": "Upload/uploadID",
+        "url": "null || obtida do storage após upload",
+        "localPath": "path local do arquivo no celular do usuario."
+      }
+    }
+  },
+  "Programa": {
+    "ativo": true,
+    "professor": {
+      "id": "",
+      "nome": ""
+    },
+    "referencia": "",
+    "nome": "",
+    "pdf": {
+      "uploadID": "Upload/uploadID",
+      "url": "null || obtida do storage após upload",
+      "localPath": "path local do arquivo no celular do usuario."
+    },
+    "codigoDart": {
+      "interface": "",
+      "classe": "",
+      "entrada": "",
+      "saida": ""
+    }
+  },
+  "Teste": {
+    "programa": "Programa/programaID",
+    "teste": [
+      {
+        "entrada": "",
+        "saida": ""
+      }
+    ]
+  },
+  "Avaliacao": {
+    "turma": {
+      "id": "",
+      "nome": ""
+    },
+    "professor": {
+      "id": "",
+      "nome": ""
+    },
+    "nome": ""
+  },
+  "Questao": {
+    "numero": 0,
+    "ativo": true,
+    "avaliacao": {
+      "id": "",
+      "nome": ""
+    },
+    "turma": {
+      "id": "",
+      "nome": ""
+    },
+    "professor": {
+      "id": "",
+      "nome": ""
+    },
+    "aluno": {
+      "id": "",
+      "matricula": "",
+      "nome": ""
+    },
+    "inicio": "",
+    "fim": "",
+    "tempo": "",
+    "tentativa": "",
+    "iniciou": "",
+    "privada": false,
+    "nota": 1,
+    "problema": {
+      "id": "",
+      "nome": "",
+      "pdf": {
+        "uploadID": "Upload/uploadID",
+        "url": ""
+      }
+    },
+    "simulacao": {
+      "valorAleatorio": {
+        "variavel1": "valor",
+        "variavel2": "valor"
+      },
+      "letra": {
+        "a": {
+          "tipo": "resposta | texto | arquivo",
+          "valor": "valor"
+        },
+        "b": {
+          "tipo": "resposta | texto | arquivo",
+          "valor": "valor"
+        },
+        "c": {
+          "tipo": "resposta | texto | arquivo",
+          "uploadID": "Upload/uploadID",
+          "url": ""
+        }
+      }
+    },
+    "solucao": {
+      "letra": {
+        "a": {
+          "tipo": "resposta | texto | arquivo",
+          "valor": "valor"
+        },
+        "b": {
+          "tipo": "resposta | texto | arquivo",
+          "valor": "valor"
+        },
+        "c": {
+          "tipo": "resposta | texto | arquivo",
+          "uploadID": "Upload/uploadID",
+          "url": "null || obtida do storage após upload",
+          "localPath": "path local do arquivo no celular do usuario."
+        }
+      }
+    }
+  },
+  "Algoritmo": {
+    "ativo": true,
+    "turma": {
+      "id": "",
+      "nome": ""
+    },
+    "professor": {
+      "id": "",
+      "nome": ""
+    },
+    "avaliacao": {
+      "id": "",
+      "nome": ""
+    },
+    "inicio": "",
+    "fim": "",
+    "tempo": "",
+    "iniciou": "",
+    "privada": false,
+    "nota": 1,
+    "programa": {
+      "id": "",
+      "nome": "",
+      "pdf": {
+        "uploadID": "Upload/uploadID",
+        "url": ""
+      }
+    },
+    "aluno": {
+      "id": "",
+      "nome": ""
+    },
+    "codigoDart": {
+      "interface": "",
+      "classe": "",
+      "entrada": "",
+      "saida": ""
+    }
+  }
+}

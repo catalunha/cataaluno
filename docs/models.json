@@ -85,7 +85,10 @@
       "id": "professorID",
       "nome": ""
     },
-    "nome": ""
+    "nota": 0,
+    "nome": "",
+    "inicio": "",
+    "fim": ""
   },
   "Questao": {
     "numero": 0,
@@ -107,9 +110,10 @@
       "matricula": "",
       "nome": ""
     },
+    "nota": 0,
     "inicio": "",
-    "iniciou": "",
     "fim": "",
+    "iniciou": "",
     "tempo": "",
     "tentativa": 3,
     "problema": {

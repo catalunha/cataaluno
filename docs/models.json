@@ -22,20 +22,17 @@
     "routes": [
       "Rota/rotaID$url"
     ],
-    "tipo": "aluno | professor | admin"
+    "tipo": "Aluno | Professor | Admintrador"
   },
   "Turma": {
     "ativo": true,
-    "professor": {
-      "id": "professorID",
-      "nome": ""
-    },
+    "professor": "professorID",
     "aluno": {
       "alunoID": {
         "id": true,
+        "nome": "",
         "matricula": "",
-        "email": "",
-        "nome": ""
+        "email": ""
       }
     },
     "instituicao": "",
@@ -77,45 +74,44 @@
     }
   },
   "Avaliacao": {
-    "turma": {
-      "id": "",
-      "nome": ""
-    },
-    "professor": {
-      "id": "professorID",
-      "nome": ""
-    },
+    "turma": "Turma/turmaID",
+    "professor": "Usuario/usuarioID",
     "nota": 0,
-    "nome": "",
-    "inicio": "",
-    "fim": ""
+    "nome": ""
   },
   "Questao": {
     "numero": 0,
-    "ativo": true,
-    "avaliacao": {
-      "id": "avaliacaoID",
-      "nome": ""
-    },
-    "turma": {
-      "id": "turmaID",
-      "nome": ""
-    },
-    "professor": {
-      "id": "professorID",
-      "nome": ""
-    },
+    "avaliacao": "avaliacaoID",
+    "turma": "turmaID",
+    "professor": "professorID",
+    "nota": 0,
+    "inicio": "",
+    "fim": "",
+    "tempo": "",
+    "tentativa": 3,
+    "problema": {
+      "id": "",
+      "nome": "",
+      "url": "https://docs.google.com/document/d/1dSHADZBVpRroEcCrpZfmoEdD-ccqlI_e21yV3lDdIIQ/edit?usp=sharing"
+    }
+  },
+  "QuestaoAplicada": {
+    "numero": 0,
+    "avaliacao": "avaliacaoID",
+    "turma": "turmaID",
+    "professor": "professorID",
+    "nota": 0,
+    "inicio": "",
+    "fim": "",
+    "tempo": "",
+    "tentativa": 3,
+    "iniciou": "",
+    "tentou": 0,
     "aluno": {
       "id": "alunoID",
       "matricula": "",
       "nome": ""
     },
-    "nota": 0,
-    "inicio": "",
-    "fim": "",
-    "iniciou": "",
-    "tempo": "",
-    "tentativa": 3,
     "problema": {
       "id": "",
       "nome": "",

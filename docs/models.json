@@ -32,7 +32,6 @@
         "id": true,
         "nome": "",
         "matricula": "",
-        "email": ""
       }
     },
     "instituicao": "",
@@ -57,7 +56,7 @@
       "variavel1": "valor",
       "variavel2": "valor"
     },
-    "letra": {
+    "pedese": {
       "a": {
         "tipo": "resposta",
         "valor": "valor"
@@ -69,6 +68,7 @@
       "c": {
         "tipo": "arquivo",
         "uploadID": "Upload/uploadID",
+        "localPath": "valor || null",
         "url": "null || obtida do storage após upload",
       }
     }
@@ -77,6 +77,8 @@
     "turma": "Turma/turmaID",
     "professor": "Usuario/usuarioID",
     "nota": 0,
+    "inicio": "",
+    "fim": "",
     "nome": ""
   },
   "Questao": {
@@ -97,9 +99,15 @@
   },
   "QuestaoAplicada": {
     "numero": 0,
-    "avaliacao": "avaliacaoID",
     "turma": "turmaID",
+    "avaliacao": "avaliacaoID",
+    "questao": "questaoID",
     "professor": "professorID",
+    "aluno": {
+      "id": "alunoID",
+      "matricula": "",
+      "nome": ""
+    },
     "nota": 0,
     "inicio": "",
     "fim": "",
@@ -107,54 +115,35 @@
     "tentativa": 3,
     "iniciou": "",
     "tentou": 0,
-    "aluno": {
-      "id": "alunoID",
-      "matricula": "",
-      "nome": ""
-    },
     "problema": {
       "id": "",
       "nome": "",
       "url": "https://docs.google.com/document/d/1dSHADZBVpRroEcCrpZfmoEdD-ccqlI_e21yV3lDdIIQ/edit?usp=sharing"
     },
-    "simulacao": {
-      "variavel": {
-        "variavel1": "valor",
-        "variavel2": "valor"
-      },
-      "letra": {
-        "a": {
-          "tipo": "resposta",
-          "valor": "valor"
-        },
-        "b": {
-          "tipo": "texto",
-          "valor": "valor"
-        },
-        "c": {
-          "tipo": "arquivo",
-          "uploadID": "Upload/uploadID",
-          "url": ""
-        }
-      }
+    "variavel": {
+      "variavel1": "valor",
+      "variavel2": "valor"
     },
-    "solucao": {
+    "pedese": {
       "a": {
         "tipo": "resposta",
-        "nota": 1,
-        "valor": "valor"
+        "gabarito": "valor",
+        "resposta": "valor",
+        "nota": 1
       },
       "b": {
         "tipo": "texto",
-        "nota": 1,
-        "valor": "valor"
+        "gabarito": "valor",
+        "resposta": "valor",
+        "nota": 1
       },
       "c": {
         "tipo": "arquivo",
-        "nota": 1,
-        "uploadID": "null || Upload/uploadID",
-        "localPath": "null || path local do arquivo no celular do usuario.",
-        "url": "null || obtida do storage após upload"
+        "urlGabarito": "valor",
+        "upload": "Upload/uploadID",
+        "localPathResposta": "valor || null",
+        "urlResposta": "null || valor",
+        "nota": 1
       }
     }
   },

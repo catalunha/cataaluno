@@ -31,7 +31,7 @@
       "alunoID": {
         "id": true,
         "nome": "",
-        "matricula": "",
+        "matricula": ""
       }
     },
     "instituicao": "",
@@ -46,11 +46,13 @@
       "id": "professorID",
       "nome": ""
     },
+    "grupo": "",
     "referencia": "",
     "nome": "",
-    "url": "https://docs.google.com/document/d/1dSHADZBVpRroEcCrpZfmoEdD-ccqlI_e21yV3lDdIIQ/edit?usp=sharing"
+    "url": ""
   },
   "Simulacao": {
+    "criadoem": "",
     "problema": "Problema/problemaID",
     "variavel": {
       "variavel1": "valor",
@@ -59,17 +61,23 @@
     "pedese": {
       "a": {
         "tipo": "resposta",
-        "valor": "valor"
+        "gabarito": "valor"
       },
       "b": {
         "tipo": "texto",
-        "valor": "valor"
+        "gabarito": "valor"
       },
       "c": {
+        "tipo": "imagem",
+        "uploadID": "Upload/uploadID",
+        "localPath": "valor || null",
+        "urlGabarito": "null || obtida do storage após upload"
+      },
+      "d": {
         "tipo": "arquivo",
         "uploadID": "Upload/uploadID",
         "localPath": "valor || null",
-        "url": "null || obtida do storage após upload",
+        "urlGabarito": "null || obtida do storage após upload"
       }
     }
   },
@@ -79,7 +87,8 @@
     "nota": 0,
     "inicio": "",
     "fim": "",
-    "nome": ""
+    "nome": "",
+    "aplicada": true
   },
   "Questao": {
     "numero": 0,
@@ -91,6 +100,7 @@
     "fim": "",
     "tempo": "",
     "tentativa": 3,
+    "aplicada": true,
     "problema": {
       "id": "",
       "nome": "",
@@ -138,9 +148,17 @@
         "nota": 1
       },
       "c": {
+        "tipo": "imagem",
+        "urlGabarito": "valor",
+        "uploadID": "Upload/uploadID",
+        "localPathResposta": "valor || null",
+        "urlResposta": "null || valor",
+        "nota": 1
+      },
+      "d": {
         "tipo": "arquivo",
         "urlGabarito": "valor",
-        "upload": "Upload/uploadID",
+        "uploadID": "Upload/uploadID",
         "localPathResposta": "valor || null",
         "urlResposta": "null || valor",
         "nota": 1

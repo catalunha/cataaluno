@@ -1,37 +1,54 @@
 {
   "Upload": {
-    "usuario": "idUsuario",
-    "localPath": "path local do arquivo no celular do usuario.",
-    "upload": false,
-    "updateCollection": {
-      "collection": "Usuario || UsuarioPerfil || Produto || PerguntaAplicada",
-      "document": "ID do documento nesta coleção",
-      "field": "foto (UsuarioID) || arquivo (UsuarioPerfilID) || uid.rascunhoIdUpload ou uid.editadoIdUpload (ProdutoID) || arquivo (PerguntaAplicadaID)"
-    },
-    "storagePath": "obtida do storage após upload",
+    "comment": "",
     "contentType": "definido pelo metadata text/plain | text/markdown | text/csv | text/html | image/png | image/jpeg | image/svg+xml  | application/pdf | application/msword | application/zip | video/x-msvideo | video/mpeg | audio/aac",
+    "hash": "gerado pelo dart na leitura local do arquivo",
+    "localPath": "path local do arquivo no celular do usuario.",
+    "storagePath": "obtida do storage após upload",
+    "updateCollection": {
+      "collection": "Usuario || ",
+      "document": "ID do documento nesta coleção",
+      "field": "campo nesta coleção",
+      "observacao": "para atualizacao deste campo"
+    },
+    "upload": false,
     "url": "obtida do storage após upload",
-    "hash": "gerado pelo dart na leitura local do arquivo"
+    "usuario": "ID do Usuario"
   },
   "Usuario": {
     "comment": "O ID é o mesmo do userId do authentication(email/senha)",
+    "ativo": true,
     "nome": "nome",
     "matricula": "",
     "email": "email",
     "ativo": true,
-    "routes": [
-      "Rota/rotaID$url"
+    "rotas": [
+      "/rota/"
     ],
-    "tipo": "Aluno | Professor | Administrador"
+    "foto": {
+      "uploadID": "ID da foto na coleção upload",
+      "localPath": "url da foto na coleção upload",
+      "url": "url da foto na coleção upload"
+    },
+    "turmaList": [
+      "turmaID"
+    ],
+    "turma": {
+      "turmaID": {
+        "nome": ""
+      }
+    }
   },
   "Turma": {
+    "comment": "",
     "ativo": true,
     "professor": "usuarioID",
+    "alunoList": [
+      "alunoID"
+    ],
     "aluno": {
       "alunoID": {
-        "id": true,
-        "nome": "",
-        "matricula": ""
+        "nome": ""
       }
     },
     "instituicao": "",
@@ -41,42 +58,65 @@
     "ultimaQuestaoAplicada": 0
   },
   "Grupo": {
+    "comment": "Os problemas de um professor estao agrupados neste grupo",
     "ativo": true,
-    "professor": "usuarioID",
+    "professor": {
+      "id": "Usuario/usuarioID",
+      "nome": ""
+    },
     "ordem": 0,
     "nome": "",
     "descricao": ""
   },
   "Problema": {
+    "comment": "",
     "ativo": true,
-    "professor": "usuarioID",
-    "grupo": "grupoID",
-    "referencia": "",
+    "professor": {
+      "id": "Usuario/usuarioID",
+      "nome": ""
+    },
+    "grupo": {
+      "id": "Grupo/grupoID",
+      "nome": ""
+    },
     "nome": "",
-    "url": ""
+    "descricao": "",
+    "propostaMarkdown": "",
+    "propostaUrl": {
+      "uploadID": "ID da foto na coleção upload",
+      "localPath": "url da foto na coleção upload",
+      "url": "url da foto na coleção upload"
+    }
   },
   "Simulacao": {
-    "criadoem": "",
+    "comment": "",
+    "modificado": "data da modificação",
     "problema": "Problema/problemaID",
     "variavel": {
-      "variavel1": "valor",
-      "variavel2": "valor"
+      "nomeVariavel1": "valor",
+      "nomeVariavel2": "valor"
     },
     "pedese": {
-      "uid1": {
-        "nome": "",
+      "uid0": {
+        "nome": "a",
         "ordem": 0,
-        "tipo": "resposta",
+        "tipo": "numero",
+        "gabarito": "valor"
+      },
+      "uid1": {
+        "nome": "b",
+        "ordem": 0,
+        "tipo": "palavra",
         "gabarito": "valor"
       },
       "uid2": {
-        "nome": "",
+        "nome": "c",
         "ordem": 0,
         "tipo": "texto",
         "gabarito": "valor"
       },
       "uid3": {
-        "nome": "",
+        "nome": "d",
         "ordem": 0,
         "tipo": "imagem",
         "uploadID": "Upload/uploadID",
@@ -84,7 +124,7 @@
         "urlGabarito": "null || obtida do storage após upload"
       },
       "uid4": {
-        "nome": "",
+        "nome": "e",
         "ordem": 0,
         "tipo": "arquivo",
         "uploadID": "Upload/uploadID",
@@ -94,6 +134,7 @@
     }
   },
   "Avaliacao": {
+    "comment": "",
     "professor": {
       "id": "Usuario/usuarioID",
       "nome": ""
@@ -106,9 +147,11 @@
     "inicio": "",
     "fim": "",
     "nota": 0,
-    "aplicada": true
+    "aplicada": true,
+    "passarDoPrazo": true
   },
   "Questao": {
+    "comment": "",
     "professor": {
       "id": "Usuario/usuarioID",
       "nome": ""
@@ -121,21 +164,25 @@
       "id": "Avaliacao/avaliacaoID",
       "nome": ""
     },
-    "numero": 0,
     "inicio": "",
     "fim": "",
     "tempo": "",
+    "passarDoPrazo": true,
     "tentativa": 3,
     "nota": 0,
-    "aplicada": true,
     "problema": {
       "id": "",
       "nome": "",
-      "url": "https://docs.google.com/document/d/1dSHADZBVpRroEcCrpZfmoEdD-ccqlI_e21yV3lDdIIQ/edit?usp=sharing"
+      "url": ""
     }
   },
-  "QuestaoAplicada": {
+  "QuestaoResolvida": {
+    "comment": "",
     "numero": 0,
+    "professor": {
+      "id": "usuarioID",
+      "nome": ""
+    },
     "turma": {
       "id": "Turma/turmaID",
       "nome": ""
@@ -148,10 +195,6 @@
       "id": "questaoID",
       "nome": "Questao/problema.nome"
     },
-    "professor": {
-      "id": "usuarioID",
-      "nome": ""
-    },
     "aluno": {
       "id": "Usuario/usuarioID",
       "nome": ""
@@ -163,6 +206,9 @@
     "tentativa": 3,
     "iniciou": "",
     "tentou": 0,
+    "passarDoPrazo": true,
+    "passouDoPrazo": true,
+    "notafinal": 0,
     "problema": {
       "id": "",
       "nome": "",
@@ -170,14 +216,22 @@
     },
     "simulacao": "Simulacao/simulacaoID",
     "variavel": {
-      "variavel1": "valor",
-      "variavel2": "valor"
+      "nomeVariavel1": "valor",
+      "nomeVariavel2": "valor"
     },
     "pedese": {
+      "uid0": {
+        "nome": "",
+        "ordem": 0,
+        "tipo": "numero",
+        "gabarito": "valor",
+        "resposta": "valor",
+        "nota": 1
+      },
       "uid1": {
         "nome": "",
         "ordem": 0,
-        "tipo": "resposta",
+        "tipo": "palavra",
         "gabarito": "valor",
         "resposta": "valor",
         "nota": 1
@@ -196,8 +250,8 @@
         "tipo": "imagem",
         "urlGabarito": "valor",
         "uploadID": "Upload/uploadID",
-        "localPathResposta": "valor || null",
-        "urlResposta": "null || valor",
+        "localPath": "valor || null",
+        "url": "null || valor",
         "nota": 1
       },
       "uid4": {
@@ -206,8 +260,8 @@
         "tipo": "arquivo",
         "urlGabarito": "valor",
         "uploadID": "Upload/uploadID",
-        "localPathResposta": "valor || null",
-        "urlResposta": "null || valor",
+        "localPath": "valor || null",
+        "url": "null || valor",
         "nota": 1
       }
     }

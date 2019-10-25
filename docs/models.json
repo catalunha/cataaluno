@@ -6,8 +6,8 @@
     "localPath": "path local do arquivo no celular do usuario.",
     "storagePath": "obtida do storage após upload",
     "updateCollection": {
-      "collection": "Usuario || ",
-      "document": "ID do documento nesta coleção",
+      "collection": "collectionX",
+      "document": "documentIDID. Id do documento nesta coleção",
       "field": "campo nesta coleção",
       "observacao": "para atualizacao deste campo"
     },
@@ -15,62 +15,65 @@
     "url": "obtida do storage após upload",
     "usuario": "ID do Usuario"
   },
+  "Cargo": {
+    "nome": "nome"
+  },
   "Usuario": {
     "comment": "O ID é o mesmo do userId do authentication(email/senha)",
     "ativo": true,
     "nome": "nome",
-    "matricula": "",
+    "apelido": "nome",
+    "celular": "celular",
     "email": "email",
-    "ativo": true,
+    "matricula": "",
+    "cargo": {
+      "id": "Cargo/documentID",
+      "nome": ""
+    },
     "rotas": [
       "/rota/"
     ],
     "foto": {
-      "uploadID": "ID da foto na coleção upload",
+      "uploadID": "ID da foto na Upload/documentID",
       "localPath": "url da foto na coleção upload",
       "url": "url da foto na coleção upload"
     },
-    "turmaList": [
-      "turmaID"
-    ],
-    "turma": {
-      "turmaID": {
-        "nome": ""
-      }
-    }
+    "turma": [
+      "Turma/turmaID"
+    ]
   },
   "Turma": {
     "comment": "",
     "ativo": true,
-    "professor": "usuarioID",
-    "alunoList": [
-      "alunoID"
-    ],
-    "aluno": {
-      "alunoID": {
-        "nome": ""
-      }
-    },
     "instituicao": "",
     "componente": "",
     "nome": "",
     "descricao": "",
-    "ultimaQuestaoAplicada": 0
+    "professor": {
+      "id": "Usuario/documentID",
+      "nome": ""
+    },
+    "aluno": [
+      "alunoID"
+    ],
+    "ultimaTarefaAplicada": 0
   },
   "Grupo": {
     "comment": "Os problemas de um professor estao agrupados neste grupo",
     "ativo": true,
+    "ordem": 0,
+    "nome": "",
+    "descricao": "",
     "professor": {
       "id": "Usuario/usuarioID",
       "nome": ""
-    },
-    "ordem": 0,
-    "nome": "",
-    "descricao": ""
+    }
   },
   "Problema": {
     "comment": "",
     "ativo": true,
+    "nome": "",
+    "descricao": "",
     "professor": {
       "id": "Usuario/usuarioID",
       "nome": ""
@@ -79,18 +82,15 @@
       "id": "Grupo/grupoID",
       "nome": ""
     },
-    "nome": "",
-    "descricao": "",
-    "propostaMarkdown": "",
-    "propostaUrl": {
-      "uploadID": "ID da foto na coleção upload",
-      "localPath": "url da foto na coleção upload",
-      "url": "url da foto na coleção upload"
-    }
+    "urlPropostaOriginal": "url para google docs com proposta sem simulacoes. compartilhar com o meu email",
+    "envioPropostaOriginal": "data do envio ou atualização",
+    "atualizarSimulacao": false,
+    "urlPropostaSimulada": "url para google drive pdf da proposta com simulacoes",
+    "envioPropostaSimulada": "data do envio ou atualização"
   },
   "Simulacao": {
     "comment": "",
-    "modificado": "data da modificação",
+    "modificado": "data da modificação deste documento",
     "problema": "Problema/problemaID",
     "variavel": {
       "nomeVariavel1": "valor",
@@ -147,8 +147,7 @@
     "inicio": "",
     "fim": "",
     "nota": 0,
-    "aplicada": true,
-    "passarDoPrazo": true
+    "aplicada": true
   },
   "Questao": {
     "comment": "",
@@ -167,7 +166,6 @@
     "inicio": "",
     "fim": "",
     "tempo": "",
-    "passarDoPrazo": true,
     "tentativa": 3,
     "nota": 0,
     "problema": {
@@ -176,7 +174,7 @@
       "url": ""
     }
   },
-  "QuestaoResolvida": {
+  "Tarefa": {
     "comment": "",
     "numero": 0,
     "professor": {
@@ -199,20 +197,20 @@
       "id": "Usuario/usuarioID",
       "nome": ""
     },
-    "nota": 0,
+    "notaAvaliacao": 0,
+    "notaQuestao": 0,
     "inicio": "",
     "fim": "",
     "tempo": "",
     "tentativa": 3,
     "iniciou": "",
     "tentou": 0,
-    "passarDoPrazo": true,
-    "passouDoPrazo": true,
+    "aberta": true,
     "notafinal": 0,
     "problema": {
       "id": "",
       "nome": "",
-      "url": "https://docs.google.com/document/d/1dSHADZBVpRroEcCrpZfmoEdD-ccqlI_e21yV3lDdIIQ/edit?usp=sharing"
+      "url": "url igual a Problema/urlPropostaSimulada"
     },
     "simulacao": "Simulacao/simulacaoID",
     "variavel": {
@@ -221,7 +219,7 @@
     },
     "pedese": {
       "uid0": {
-        "nome": "",
+        "nome": "a",
         "ordem": 0,
         "tipo": "numero",
         "gabarito": "valor",
@@ -229,7 +227,7 @@
         "nota": 1
       },
       "uid1": {
-        "nome": "",
+        "nome": "b",
         "ordem": 0,
         "tipo": "palavra",
         "gabarito": "valor",
@@ -237,7 +235,7 @@
         "nota": 1
       },
       "uid2": {
-        "nome": "",
+        "nome": "c",
         "ordem": 0,
         "tipo": "texto",
         "gabarito": "valor",
@@ -245,7 +243,7 @@
         "nota": 1
       },
       "uid3": {
-        "nome": "",
+        "nome": "d",
         "ordem": 0,
         "tipo": "imagem",
         "urlGabarito": "valor",
@@ -255,7 +253,7 @@
         "nota": 1
       },
       "uid4": {
-        "nome": "",
+        "nome": "e",
         "ordem": 0,
         "tipo": "arquivo",
         "urlGabarito": "valor",

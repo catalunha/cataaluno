@@ -11,25 +11,19 @@
       "field": "campo nesta coleção",
       "observacao": "para atualizacao deste campo"
     },
-    "upload": false,
+    "upload": "true: function já pode iniciar upload e atualiza os dados de updateCollection no destino. false: functions nao fez upload aguardando pedido do usuario",
     "url": "obtida do storage após upload",
     "usuario": "ID do Usuario"
   },
-  "Cargo": {
-    "nome": "nome"
-  },
   "Usuario": {
     "comment": "O ID é o mesmo do userId do authentication(email/senha)",
-    "ativo": true,
+    "ativo": "true: aparece na listagens. false: !true ",
     "nome": "nome",
+    "matricula": "",
+    "email": "email",
     "apelido": "nome",
     "celular": "celular",
-    "email": "email",
-    "matricula": "",
-    "cargo": {
-      "id": "Cargo/documentID",
-      "nome": ""
-    },
+    "aluno": "true: usuario é um aluno. false: é um professor.",
     "rotas": [
       "/rota/"
     ],
@@ -40,11 +34,12 @@
     },
     "turma": [
       "Turma/turmaID"
-    ]
+    ],
+    "ultimaOrdemEmGrupo": "numero. Quando criar uma questao de qq avalicao acrescenta este numero."
   },
   "Turma": {
     "comment": "",
-    "ativo": true,
+    "ativo": "true: aparece na listagens. false: !true ",
     "instituicao": "",
     "componente": "",
     "nome": "",
@@ -56,80 +51,93 @@
     "aluno": [
       "alunoID"
     ],
-    "ultimaTarefaAplicada": 0
+    "ultimoNumeroEmQuestao": "numero. Quando criar uma questao de qq avalicao acrescenta este numero."
   },
   "Grupo": {
-    "comment": "Os problemas de um professor estao agrupados neste grupo",
-    "ativo": true,
+    "comment": "Os situacaos de um professor estao agrupados neste grupo",
+    "ativo": "true: aparece na listagens disponiveis. false: !true ",
     "ordem": 0,
     "nome": "",
     "descricao": "",
     "professor": {
       "id": "Usuario/usuarioID",
       "nome": ""
-    }
+    },
+    "ultimaOrdemEmSituacao": "numero. Quando criar uma questao de qq avalicao acrescenta este numero."
   },
-  "Problema": {
+  "Situacao": {
     "comment": "",
-    "ativo": true,
+    "ativo": "true: aparece na listagens de situacaos disponiveis. false: !true ",
+    "ordem": "",
     "nome": "",
     "descricao": "",
     "professor": {
       "id": "Usuario/usuarioID",
-      "nome": ""
+      "nome": "Usuario/usuarioID.nome"
     },
     "grupo": {
       "id": "Grupo/grupoID",
-      "nome": ""
+      "nome": "Grupo/grupoID.nome"
     },
-    "urlPropostaOriginal": "url para google docs com proposta sem simulacoes. compartilhar com o meu email",
-    "envioPropostaOriginal": "data do envio ou atualização",
-    "atualizarSimulacao": false,
-    "urlPropostaSimulada": "url para google drive pdf da proposta com simulacoes",
-    "envioPropostaSimulada": "data do envio ou atualização"
+    "urlSituacaoOriginal": "url para google docs com proposta sem simulacoes. compartilhar com o meu email",
+    "envioSituacaoOriginal": "data do envio ou atualização",
+    "AlgoritmoPSimulacao": "true: urlSituacaoOriginal sendo analisada e aguardando algoritmo pra gerar simulações, ativo:false. false: nao precisa de programa pra gerar simulação ativo:true",
+    "CodigoFontePSimulacao": "codigo fonte em qq linguagem pra gerar simulação",
+    "urlSituacaoSimulada": "url para google drive pdf da proposta com simulacoes",
+    "envioSituacaoSimulada": "data do envio ou atualização. Ativo:true",
+    "uso": {
+      "turmaID": 0
+    }
   },
   "Simulacao": {
     "comment": "",
+    "nome": "",
+    "descricao": "",
     "modificado": "data da modificação deste documento",
-    "problema": "Problema/problemaID",
+    "situacao": "Situacao/situacaoID",
+    "ultimaOrdemEmPedese": 0,
     "variavel": {
-      "nomeVariavel1": "valor",
-      "nomeVariavel2": "valor"
+      "uid0": {
+        "ordem": 0,
+        "nome": "pressao",
+        "valor": "numero/texto"
+      },
+      "uid1": {
+        "ordem": 0,
+        "nome": "temperatura",
+        "valor": "numero/texto"
+      }
     },
     "pedese": {
       "uid0": {
-        "nome": "a",
         "ordem": 0,
+        "nome": "a",
         "tipo": "numero",
         "gabarito": "valor"
       },
       "uid1": {
-        "nome": "b",
         "ordem": 0,
+        "nome": "b",
         "tipo": "palavra",
         "gabarito": "valor"
       },
       "uid2": {
-        "nome": "c",
         "ordem": 0,
+        "nome": "c",
         "tipo": "texto",
         "gabarito": "valor"
       },
       "uid3": {
-        "nome": "d",
         "ordem": 0,
+        "nome": "d",
         "tipo": "imagem",
-        "uploadID": "Upload/uploadID",
-        "localPath": "valor || null",
-        "urlGabarito": "null || obtida do storage após upload"
+        "urlGabarito": "null || informado do google docs"
       },
       "uid4": {
-        "nome": "e",
         "ordem": 0,
+        "nome": "e",
         "tipo": "arquivo",
-        "uploadID": "Upload/uploadID",
-        "localPath": "valor || null",
-        "urlGabarito": "null || obtida do storage após upload"
+        "urlGabarito": "null || informado do google docs"
       }
     }
   },
@@ -144,13 +152,20 @@
       "nome": ""
     },
     "nome": "",
+    "descricao": "",
     "inicio": "",
     "fim": "",
     "nota": 0,
-    "aplicada": true
+    "ultimaOrdemEmQuestao": "numero. Qdo acrescenta uma questao na avalicao armazena a ordem.",
+    "aplicada": true,
+    "aplicadaAlunos": [
+      "Usuario/usuarioID"
+    ]
   },
   "Questao": {
     "comment": "",
+    "numero": 0,
+    "ordem": 0,
     "professor": {
       "id": "Usuario/usuarioID",
       "nome": ""
@@ -165,52 +180,50 @@
     },
     "inicio": "",
     "fim": "",
-    "tempo": "",
     "tentativa": 3,
+    "tempo": "",
     "nota": 0,
-    "problema": {
-      "id": "",
-      "nome": "",
-      "url": ""
+    "situacao": {
+      "id": "Situacao/situacaoID",
+      "nome": "Situacao/situacaoID.nome",
+      "url": "Situacao/situacaoID"
     }
   },
   "Tarefa": {
     "comment": "",
-    "numero": 0,
     "professor": {
-      "id": "usuarioID",
-      "nome": ""
+      "id": "Usuario/usuarioID",
+      "nome": "Usuario/usuarioID.nome"
     },
     "turma": {
       "id": "Turma/turmaID",
-      "nome": ""
+      "nome": "Turma/turmaID.nome"
     },
     "avaliacao": {
       "id": "Avaliacao/avaliacaoID",
-      "nome": ""
+      "nome": "Avaliacao/avaliacaoID.nome"
     },
     "questao": {
-      "id": "questaoID",
-      "nome": "Questao/problema.nome"
+      "id": "Questao/questaoID",
+      "numero": 1
     },
     "aluno": {
       "id": "Usuario/usuarioID",
-      "nome": ""
+      "nome": "Usuario/usuarioID.nome"
     },
-    "notaAvaliacao": 0,
-    "notaQuestao": 0,
     "inicio": "",
-    "fim": "",
-    "tempo": "",
-    "tentativa": 3,
     "iniciou": "",
+    "modificado": "",
+    "fim": "",
+    "tentativa": 3,
     "tentou": 0,
+    "tempo": "",
     "aberta": true,
-    "notafinal": 0,
-    "problema": {
+    "nota": 0,
+    "situacao": {
       "id": "",
       "nome": "",
-      "url": "url igual a Problema/urlPropostaSimulada"
+      "url": "url igual a Situacao/urlPropostaSimulada"
     },
     "simulacao": "Simulacao/simulacaoID",
     "variavel": {
@@ -224,7 +237,7 @@
         "tipo": "numero",
         "gabarito": "valor",
         "resposta": "valor",
-        "nota": 1
+        "nota": 0
       },
       "uid1": {
         "nome": "b",
@@ -232,7 +245,7 @@
         "tipo": "palavra",
         "gabarito": "valor",
         "resposta": "valor",
-        "nota": 1
+        "nota": 0
       },
       "uid2": {
         "nome": "c",
@@ -240,7 +253,7 @@
         "tipo": "texto",
         "gabarito": "valor",
         "resposta": "valor",
-        "nota": 1
+        "nota": 0
       },
       "uid3": {
         "nome": "d",
@@ -249,8 +262,8 @@
         "urlGabarito": "valor",
         "uploadID": "Upload/uploadID",
         "localPath": "valor || null",
-        "url": "null || valor",
-        "nota": 1
+        "urlResposta": "null || valor",
+        "nota": 0
       },
       "uid4": {
         "nome": "e",
@@ -259,8 +272,8 @@
         "urlGabarito": "valor",
         "uploadID": "Upload/uploadID",
         "localPath": "valor || null",
-        "url": "null || valor",
-        "nota": 1
+        "urlResposta": "null || valor",
+        "nota": 0
       }
     }
   },

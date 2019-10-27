@@ -1,6 +1,10 @@
 {
   "Upload": {
     "comment": "",
+    "#onCreate": "",
+    "#onRead": "",
+    "#onUpdate": "",
+    "#onDelete": "",
     "contentType": "definido pelo metadata text/plain | text/markdown | text/csv | text/html | image/png | image/jpeg | image/svg+xml  | application/pdf | application/msword | application/zip | video/x-msvideo | video/mpeg | audio/aac",
     "hash": "gerado pelo dart na leitura local do arquivo",
     "localPath": "path local do arquivo no celular do usuario.",
@@ -17,6 +21,10 @@
   },
   "Usuario": {
     "comment": "O ID é o mesmo do userId do authentication(email/senha)",
+    "#onCreate": "",
+    "#onRead": "",
+    "#onUpdate": "",
+    "#onDelete": "Atualizar Turma.aluno",
     "ativo": "true: aparece na listagens. false: !true ",
     "nome": "nome",
     "matricula": "",
@@ -35,11 +43,17 @@
     "turma": [
       "Turma/turmaID"
     ],
-    "ultimaOrdemEmGrupo": "numero. Quando criar uma questao de qq avalicao acrescenta este numero."
+    "grupoNumeroAdicionado": "numero. Quando criar uma questao de qq avalicao acrescenta este numero.",
+    "turmaNumeroAdicionado": "numero. Quando criar uma turma acrescenta este numero."
   },
   "Turma": {
     "comment": "",
+    "#onCreate": "numero=Usuario.turmaNumeroAdicionado+1. Usuario.turmaNumeroAdicionado++",
+    "#onRead": "",
+    "#onUpdate": "",
+    "#onDelete": "Atualizar Usuario.turma mas nao apaga usuario. Apagar tarefas com esta turma",
     "ativo": "true: aparece na listagens. false: !true ",
+    "numero": "numero. da turma q pode ser usado para ordenar",
     "instituicao": "",
     "componente": "",
     "nome": "",
@@ -51,25 +65,34 @@
     "aluno": [
       "alunoID"
     ],
-    "questaoNumeroAdicionada": "numero. inicia com 0. Quando criar uma questao de qq avalicao acrescenta este numero.",
-    "questaoNumeroExcluida": "numero. inicia com 0. Quando excluir uma questao de qq avalicao acrescenta este numero."
+    "AlunoPCadastro":"uma lista de matricula - nome - email separado por linha",
+    "questaoNumeroAdicionado": "numero. inicia com 0. Quando criar uma questao de qq avalicao acrescenta este numero.",
+    "questaoNumeroExcluido": "numero. inicia com 0. Quando excluir uma questao de qq avalicao acrescenta este numero."
   },
   "Grupo": {
     "comment": "Os situacaos de um professor estao agrupados neste grupo",
+    "#onCreate": "",
+    "#onRead": "",
+    "#onUpdate": "",
+    "#onDelete": "",
     "ativo": "true: aparece na listagens disponiveis. false: !true ",
-    "ordem": 0,
+    "numero": 0,
     "nome": "",
     "descricao": "",
     "professor": {
       "id": "Usuario/usuarioID",
       "nome": ""
     },
-    "ultimaOrdemEmSituacao": "numero. Quando criar uma questao de qq avalicao acrescenta este numero."
+    "situacaoNumeroAdicionado": "numero. Quando criar uma questao de qq avalicao acrescenta este numero."
   },
   "Situacao": {
     "comment": "",
+    "#onCreate": "numero=Grupo.situacaoNumeroAdicionado+1. Grupo.situacaoNumeroAdicionado++",
+    "#onRead": "",
+    "#onUpdate": "",
+    "#onDelete": "",
     "ativo": "true: aparece na listagens de situacaos disponiveis. false: !true ",
-    "ordem": "",
+    "numero": "",
     "nome": "",
     "descricao": "",
     "professor": {
@@ -80,23 +103,26 @@
       "id": "Grupo/grupoID",
       "nome": "Grupo/grupoID.nome"
     },
-    "urlSituacaoOriginal": "url para google docs com proposta sem simulacoes. compartilhar com o meu email",
-    "envioSituacaoOriginal": "data do envio ou atualização",
-    "AlgoritmoPSimulacao": "true: urlSituacaoOriginal sendo analisada e aguardando algoritmo pra gerar simulações, ativo:false. false: nao precisa de programa pra gerar simulação ativo:true",
-    "CodigoFontePSimulacao": "codigo fonte em qq linguagem pra gerar simulação",
-    "urlSituacaoSimulada": "url para google drive pdf da proposta com simulacoes",
-    "envioSituacaoSimulada": "data do envio ou atualização. Ativo:true",
+    "precisaAlgoritmoSimulacao": "true/false",
+    "urlPDFSituacaoSemAlgoritmo": "se precisaAlgoritmoSimulacao=false : pdf com proposta da situacao e professor gera as simulações. precisaAlgoritmoSimulacao=true este campo nulo",
+    "urlGDocsPAlgoritmo": "anexa gdocs com proposta e compartilhar no email do suporte.",
+    "urlCodigoFonteAlgoritmo": "detalhes do atendimento e desenvolvimento do codigo",
+    "urlPDFSituacaoComAlgoritmo": "pdf com estrutura para usar proposta com simulação",
     "uso": {
       "turmaID": 0
     }
   },
   "Simulacao": {
     "comment": "",
+    "#onCreate": "",
+    "#onRead": "",
+    "#onUpdate": "",
+    "#onDelete": "",
     "nome": "",
     "descricao": "",
     "modificado": "data da modificação deste documento",
     "situacao": "Situacao/situacaoID",
-    "ultimaOrdemEmPedese": 0,
+    "ordemAdicionada": 0,
     "variavel": {
       "uid0": {
         "ordem": 0,
@@ -144,6 +170,10 @@
   },
   "Avaliacao": {
     "comment": "",
+    "#onCreate": "",
+    "#onRead": "",
+    "#onUpdate": "Se atualizar inicio/fim após avaliacao aplicada atualizar em todas as tarefas. ",
+    "#onDelete": "Apagar tarefas com esta avaliacao. ",
     "professor": {
       "id": "Usuario/usuarioID",
       "nome": ""
@@ -157,8 +187,6 @@
     "inicio": "",
     "fim": "",
     "nota": 0,
-    "questaoOrdemAdicionada": "numero. inicia com 0 e quando criar uma questao desta avalicao acrescenta este numero.",
-    "questaoOrdemExcluida": "numero. inicia com 0 e quando deletar uma questao desta avalicao acrescenta este numero.",
     "aplicada": true,
     "alunos": [
       "Usuario/usuarioID"
@@ -166,13 +194,11 @@
   },
   "Questao": {
     "comment": "",
-    "@onCreate": "",
-    "@onUpdate": "",
-    "@onSave": "",
-    "@onDelete": "Turma.questaoNumeroExcluida++. Avaliacao.questaoOrdemExcluida++",
-    "numero": "@onCreate: set este valor com (Turma.questaoNumeroAdicionada + 1 ). Turma.questaoNumeroAdicionada++. Avaliacao.questaoOrdemAdicionada++",
-    "ordem": "@onCreate: set este valor com (Avaliacao.questaoOrdemAdicionada + 1 ). Avaliacao.questaoOrdemAdicionada++ ",
-    "ordemLocal": 0,
+    "#onCreate": "numero=Turma.questaoNumeroAdicionado + 1. Turma.questaoNumeroAdicionado++",
+    "#onRead": "",
+    "#onUpdate": "",
+    "#onDelete": "Turma.questaoNumeroExcluido++. Situacao/situacaoID.uso.turmaID--. Apagar tarefas associadas a esta questao. ",
+    "numero": 0,
     "professor": {
       "id": "Usuario/usuarioID",
       "nome": ""
@@ -198,6 +224,12 @@
   },
   "Tarefa": {
     "comment": "",
+    "#onCreate": "",
+    "#onRead": "",
+    "#onUpdate": "",
+    "#onDelete": "",
+    "@tempoRestanteDeDesenvolvimento":"",
+    "@update_podeResolver":" . Para aberta se (tentou > tentativa) = false. se (inicio - agora > tempo) = false. se (iniciou > inicio) = false",
     "professor": {
       "id": "Usuario/usuarioID",
       "nome": "Usuario/usuarioID.nome"
@@ -212,7 +244,7 @@
     },
     "questao": {
       "id": "Questao/questaoID",
-      "numeroLocal": 1
+      "numero": 1
     },
     "aluno": {
       "id": "Usuario/usuarioID",
@@ -226,8 +258,7 @@
     "tentativa": "numero: 3. de 1 a 5",
     "tentou": "numero. vezes em q o aluno enviou respostas. atualizar: _editou",
     "tempo": "hora. tempo necessario para realizar a prova.",
-    "aberta": "true/false. se (tentou > tentativa) = false. se (inicio - agora > tempo) = false. se (iniciou > inicio) = false",
-    "nota": 0,
+    "podeResolver": "true/false. true: tempo/tentativa ok  aluno pode acessar para resolver. false: tempo/tentativa acabaram aluno nao pode acessar para resolver",
     "situacao": {
       "id": "",
       "nome": "",
@@ -235,8 +266,16 @@
     },
     "simulacao": "Simulacao/simulacaoID",
     "variavel": {
-      "nomeVariavel1": "valor",
-      "nomeVariavel2": "valor"
+      "uid0": {
+        "ordem": 0,
+        "nome": "pressao",
+        "valor": "numero/texto"
+      },
+      "uid1": {
+        "ordem": 0,
+        "nome": "temperatura",
+        "valor": "numero/texto"
+      }
     },
     "pedese": {
       "uid0": {

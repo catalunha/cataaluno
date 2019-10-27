@@ -51,7 +51,8 @@
     "aluno": [
       "alunoID"
     ],
-    "ultimoNumeroEmQuestao": "numero. Quando criar uma questao de qq avalicao acrescenta este numero."
+    "questaoNumeroAdicionada": "numero. inicia com 0. Quando criar uma questao de qq avalicao acrescenta este numero.",
+    "questaoNumeroExcluida": "numero. inicia com 0. Quando excluir uma questao de qq avalicao acrescenta este numero."
   },
   "Grupo": {
     "comment": "Os situacaos de um professor estao agrupados neste grupo",
@@ -156,16 +157,22 @@
     "inicio": "",
     "fim": "",
     "nota": 0,
-    "ultimaOrdemEmQuestao": "numero. Qdo acrescenta uma questao na avalicao armazena a ordem.",
+    "questaoOrdemAdicionada": "numero. inicia com 0 e quando criar uma questao desta avalicao acrescenta este numero.",
+    "questaoOrdemExcluida": "numero. inicia com 0 e quando deletar uma questao desta avalicao acrescenta este numero.",
     "aplicada": true,
-    "aplicadaAlunos": [
+    "alunos": [
       "Usuario/usuarioID"
     ]
   },
   "Questao": {
     "comment": "",
-    "numero": 0,
-    "ordem": 0,
+    "@onCreate": "",
+    "@onUpdate": "",
+    "@onSave": "",
+    "@onDelete": "Turma.questaoNumeroExcluida++. Avaliacao.questaoOrdemExcluida++",
+    "numero": "@onCreate: set este valor com (Turma.questaoNumeroAdicionada + 1 ). Turma.questaoNumeroAdicionada++. Avaliacao.questaoOrdemAdicionada++",
+    "ordem": "@onCreate: set este valor com (Avaliacao.questaoOrdemAdicionada + 1 ). Avaliacao.questaoOrdemAdicionada++ ",
+    "ordemLocal": 0,
     "professor": {
       "id": "Usuario/usuarioID",
       "nome": ""
@@ -205,20 +212,21 @@
     },
     "questao": {
       "id": "Questao/questaoID",
-      "numero": 1
+      "numeroLocal": 1
     },
     "aluno": {
       "id": "Usuario/usuarioID",
       "nome": "Usuario/usuarioID.nome"
     },
-    "inicio": "",
-    "iniciou": "",
-    "modificado": "",
-    "fim": "",
-    "tentativa": 3,
-    "tentou": 0,
-    "tempo": "",
-    "aberta": true,
+    "modificado": "dh em q foi aplicada ou criado a tarefa. se modificar questão ou avaliacao atualiza esta data",
+    "inicio": "dh copia de questao",
+    "iniciou": "dh q o aluno iniciou a tarefa",
+    "editou": "dh em q o alunos enviou a ultima resposta após abrir tarefa. sempre maior q _inicio",
+    "fim": "dh: copia de questao",
+    "tentativa": "numero: 3. de 1 a 5",
+    "tentou": "numero. vezes em q o aluno enviou respostas. atualizar: _editou",
+    "tempo": "hora. tempo necessario para realizar a prova.",
+    "aberta": "true/false. se (tentou > tentativa) = false. se (inicio - agora > tempo) = false. se (iniciou > inicio) = false",
     "nota": 0,
     "situacao": {
       "id": "",

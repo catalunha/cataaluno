@@ -114,7 +114,7 @@
   },
   "Simulacao": {
     "comment": "",
-    "#onCreate": "",
+    "#onCreate": "Nao pode criar simulação via widget se Situacao.precisaAlgoritmoSimulacao=true",
     "#onRead": "",
     "#onUpdate": "",
     "#onDelete": "",

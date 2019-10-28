@@ -50,7 +50,7 @@
     "comment": "",
     "#onCreate": "numero=Usuario.turmaNumeroAdicionado+1. Usuario.turmaNumeroAdicionado++",
     "#onRead": "",
-    "#onUpdate": "",
+    "#onUpdate": "Turma.alunoPCadastro se atualizada FBFunction cria user e Usuario atualizando Turma.aluno",
     "#onDelete": "Atualizar Usuario.turma mas nao apaga usuario. Apagar tarefas com esta turma",
     "ativo": "true: aparece na listagens. false: !true ",
     "numero": "numero. da turma q pode ser usado para ordenar",
@@ -65,7 +65,7 @@
     "aluno": [
       "alunoID"
     ],
-    "AlunoPCadastro":"uma lista de matricula - nome - email separado por linha",
+    "alunoPCadastro": "uma lista de matricula - nome - email separado por linha",
     "questaoNumeroAdicionado": "numero. inicia com 0. Quando criar uma questao de qq avalicao acrescenta este numero.",
     "questaoNumeroExcluido": "numero. inicia com 0. Quando excluir uma questao de qq avalicao acrescenta este numero."
   },
@@ -74,7 +74,7 @@
     "#onCreate": "",
     "#onRead": "",
     "#onUpdate": "",
-    "#onDelete": "",
+    "#onDelete": "So deleta grupo sem situacoes. ",
     "ativo": "true: aparece na listagens disponiveis. false: !true ",
     "numero": 0,
     "nome": "",
@@ -88,9 +88,9 @@
   "Situacao": {
     "comment": "",
     "#onCreate": "numero=Grupo.situacaoNumeroAdicionado+1. Grupo.situacaoNumeroAdicionado++",
-    "#onRead": "",
+    "#onRead": "Se ativo=false desativar todas as tarefas ja criadas. nao aparece na listagem de situacoes para serem alocadas a questao. Se ativo=true reativa as tarefas que foram ativadas.",
     "#onUpdate": "",
-    "#onDelete": "",
+    "#onDelete": "Apagar as tarefas das turmas ativas que contem esta situação.",
     "ativo": "true: aparece na listagens de situacaos disponiveis. false: !true ",
     "numero": "",
     "nome": "",
@@ -172,8 +172,8 @@
     "comment": "",
     "#onCreate": "",
     "#onRead": "",
-    "#onUpdate": "Se atualizar inicio/fim após avaliacao aplicada atualizar em todas as tarefas. ",
-    "#onDelete": "Apagar tarefas com esta avaliacao. ",
+    "#onUpdate": "Se atualizar inicio/fim e Aplicada=true atualizar em todas as questoes e tarefas correspondentes a esta avaliacao. Se atualizar inicio/fim e Aplicada=false atualiza todas questoes desta avaliacao",
+    "#onDelete": "Se Aplicada=true apagar tarefas com esta avaliacao. ",
     "professor": {
       "id": "Usuario/usuarioID",
       "nome": ""
@@ -187,8 +187,8 @@
     "inicio": "",
     "fim": "",
     "nota": 0,
-    "aplicada": true,
-    "alunos": [
+    "aplicar": true,
+    "AplicadaPAluno": [
       "Usuario/usuarioID"
     ]
   },
@@ -196,9 +196,9 @@
     "comment": "",
     "#onCreate": "numero=Turma.questaoNumeroAdicionado + 1. Turma.questaoNumeroAdicionado++",
     "#onRead": "",
-    "#onUpdate": "",
-    "#onDelete": "Turma.questaoNumeroExcluido++. Situacao/situacaoID.uso.turmaID--. Apagar tarefas associadas a esta questao. ",
-    "numero": 0,
+    "#onUpdate": "Se Avaliacao.aplicada=true nao pode alterar Questao.numero. Se Avaliacao.aplicada=true nao alterar Avaliacao.situacao atual. Se Avaliacao.aplicada=true e editar inicio/fim/tentativas/tempo alterar em todas as tarefas relacionadas.",
+    "#onDelete": "Turma.questaoNumeroExcluido++. Situacao/situacaoID.uso.turmaID--. Se Avaliacao.aplicada=true apagar tarefas com esta questão. ",
+    "numero": "numero. usado para referenciar a questao e ordenar.",
     "professor": {
       "id": "Usuario/usuarioID",
       "nome": ""
@@ -228,8 +228,9 @@
     "#onRead": "",
     "#onUpdate": "",
     "#onDelete": "",
-    "@tempoRestanteDeDesenvolvimento":"",
-    "@update_podeResolver":" . Para aberta se (tentou > tentativa) = false. se (inicio - agora > tempo) = false. se (iniciou > inicio) = false",
+    "@tempoRestanteDeDesenvolvimento": "",
+    "@update_podeResolver": " . Para aberta se (tentou > tentativa) = false. se (inicio - agora > tempo) = false. se (iniciou > inicio) = false",
+    "ativo": "true: aparece na listagens de tarefas disponiveis. false: !true ",
     "professor": {
       "id": "Usuario/usuarioID",
       "nome": "Usuario/usuarioID.nome"
@@ -323,6 +324,27 @@
         "nota": 0
       }
     }
+  },
+  "Encontro": {
+    "comment": "",
+    "#onCreate": "",
+    "#onRead": "",
+    "#onUpdate": "",
+    "#onDelete": "",
+    "professor": {
+      "id": "Usuario/usuarioID",
+      "nome": "Usuario/usuarioID.nome"
+    },
+    "turma": {
+      "id": "Turma/turmaID",
+      "nome": "Turma/turmaID.nome"
+    },
+    "data": "",
+    "nome": "",
+    "descricao": "",
+    "presente": [
+      "Usuario/usuarioID"
+    ]
   },
   "Programa": {
     "ativo": true,
